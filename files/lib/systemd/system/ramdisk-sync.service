@@ -4,10 +4,10 @@ Before=umount.target
 [Service]
 Type=oneshot
 User=root
-ExecStartPre=/bin/chown -Rf $USER $HOME/ramdisk/
-ExecStart=/usr/bin/rsync -ar $HOME/temp_ramdisk/ $HOME/ramdisk/
-ExecStop=/usr/bin/rsync -ar $HOME/ramdisk/ $HOME/temp_ramdisk/
-ExecStopPost=/bin/chown -Rf $USER $HOME/ramdisk/
+ExecStartPre=/bin/chown -Rf ubuntu /home/ubuntu/ramdisk/
+ExecStart=/usr/bin/rsync -ar /home/ubuntu/temp_ramdisk/ /home/ubuntu/ramdisk/
+ExecStop=/usr/bin/rsync -ar /home/ubuntu/ramubuntu /home/ubuntu/temp_ramdisk/
+ExecStopPost=/bin/chown -Rf ubuntu /home/ubuntu/ramdisk/
 RemainAfterExit=yes
 
 [Install]
