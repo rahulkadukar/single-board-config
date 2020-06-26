@@ -1,0 +1,14 @@
+[Unit]
+Before=umount.target
+
+[Service]
+Type=oneshot
+User=root
+ExecStartPre=/bin/chown -Rf $USER $HOME/ramdisk/
+ExecStart=/usr/bin/rsync -ar $HOME/temp_ramdisk/ $HOME/ramdisk/
+ExecStop=/usr/bin/rsync -ar $HOME/ramdisk/ $HOME/temp_ramdisk/
+ExecStopPost=/bin/chown -Rf $USER $HOME/ramdisk/
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
