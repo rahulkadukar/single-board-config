@@ -5,6 +5,7 @@ sudo apt install -y sysstat
 
 # Copy the file to /etc/sysstat
 sudo cp ./files/etc/sysstat/sysstat /etc/sysstat/sysstat
+sudo cp ./files/etc/default/sysstat /etc/default/sysstat
 
 # Copy the file to  /etc/cron.d/sysstat
 sudo cp ./files/etc/cron.d/sysstat /etc/cron.d/sysstat
