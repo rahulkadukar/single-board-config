@@ -7,6 +7,7 @@ move_to_archive() {
     echo $SHASRC
     echo $SHATGT
     if [[ $SHASRC != $SHATGT ]]; then
+      echo 'MOVING FILE'
       mv $1 "$ARCHIVE/$2"
     fi
   else
@@ -14,7 +15,7 @@ move_to_archive() {
   fi
 }
 
-machines=(172.16.10.41 172.16.10.42 172.16.10.43 172.16.10.44)
+machines=(172.16.10.40 172.16.10.41 172.16.10.42 172.16.10.43 172.16.10.44 172.16.10.45 172.16.10.46 172.16.10.48)
 
 LOGDIR="/var/log/sysstat"
 FILENAME_REGEX="sa([0-9]{8})$"
