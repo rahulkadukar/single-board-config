@@ -8,12 +8,14 @@ Configurations for Single Board Computers
 
   # To get the password for logging in
   k -n kube-system describe secret admin-user-token | grep ^token
+  k3s kubectl -n kubernetes-dashboard describe secret admin-user-token | grep '^token'
 ```
 
 To login to the dashboard use the url below
 
 ```bash
-  http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login
+  http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/
+    services/https:kubernetes-dashboard:/proxy/#/login
  ``` 
 
 [Click here](http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login)
