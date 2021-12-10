@@ -9,14 +9,17 @@
 
   # get a copy of the init script scp from server
   mkdir config
+  exit 1
+  # FIXME: Manual steps need to be done here
 
   # copy file to enable prometheus logging
-  cp config/node_exporter.service /etc/systemd/system/
+  cp /home/tars/config/node_exporter.service /etc/systemd/system/
   systemctl daemon-reload
   systemctl enable node_exporter.service
   systemctl start node_exporter.service
 
   # update dotfiles
+  su - tars
   git clone https://github.com/rahulkadukar/notes.git temp-dotfiles-folder-782ffb && \
   mkdir -p ~/.vim/colors && \
   cp temp-dotfiles-folder-782ffb/config/.vim/colors/lucius.vim ~/.vim/colors/lucius.vim && \
@@ -24,11 +27,12 @@
   cp temp-dotfiles-folder-782ffb/config/.tmux.conf ~/.tmux.conf && \
   cp temp-dotfiles-folder-782ffb/config/.gitconfig ~/.gitconfig && \
   rm -rf temp-dotfiles-folder-782ffb/
-
+    
   # install nodejs
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
   source ~/.bashrc
   nvm install 16.13.1
+  exit
 ```
 
 
