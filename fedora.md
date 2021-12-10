@@ -8,6 +8,7 @@
   dnf install -y git htop tmux vim
 
   # get a copy of the init script scp from server
+  su - tars
   mkdir config
   exit 1
   # FIXME: Manual steps need to be done here
