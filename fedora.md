@@ -32,7 +32,7 @@
 ```
 
 
-## v1 (2021-12-10)
+## v1.0 (2021-12-10)
 
 * Installation with user tars and root
 * Updated Kernel to **5.15.6**
