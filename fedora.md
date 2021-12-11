@@ -1,7 +1,5 @@
 # Fedora 35
 
-Run the following file to get the same results
-
 ```sh
   #! /bin/bash
   USER=tars
@@ -20,17 +18,25 @@ Run the following file to get the same results
   cp temp-dotfiles-folder-782ffb/config/.tmux.conf /home/$USER/.tmux.conf
   cp temp-dotfiles-folder-782ffb/config/.gitconfig /home/$USER/.gitconfig
 
+  # update dotfiles for root user as well
+  mkdir -p ~/.vim/colors
+  cp temp-dotfiles-folder-782ffb/config/.vim/colors/lucius.vim ~/.vim/colors/lucius.vim 
+  cp temp-dotfiles-folder-782ffb/config/.vimrc ~/.vimrc
+  cp temp-dotfiles-folder-782ffb/config/.tmux.conf ~/.tmux.conf
+  cp temp-dotfiles-folder-782ffb/config/.gitconfig ~/.gitconfig
+
   # update permissions
   chown -R $USER:$USER /home/$USER/.vim/colors
   chown -R $USER:$USER /home/$USER/.vimrc
   chown -R $USER:$USER /home/$USER/.tmux.conf
   chown -R $USER:$USER /home/$USER/.gitconfig
 
-  # copy file to enable prometheus logging
   cp temp-dotfiles-folder-782ffb/config/node_exporter.service /etc/systemd/system/ && \
   rm -rf temp-dotfiles-folder-782ffb/
 
-  # setup user and configuration for prometheus
+  # FIXME: Manual step here
+
+  # copy file to enable prometheus logging
   useradd -M -r -s /sbin/nologin node_exporter
   getent passwd node_exporter
 
@@ -56,7 +62,24 @@ Run the following file to get the same results
   # install nodejs
   runuser -l $USER -c "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash && \
   source ~/.bashrc && nvm install 16.13.1"
+
+  #------------------------------------------------------------------------------
+  # v 1.1
+  #------------------------------------------------------------------------------
+  # install docker-compose and moby-engine
+  dnf install -y docker-compose moby-engine
+
+  # enable docker
+  systemctl enable docker
+  systemctl start docker
+  usermod -aG docker $USER
 ```
+
+## v1.1 (2021-12-10)
+* Added config to root user as well
+* Installed
+  - docker-compose
+  - moby-engine
 
 ## v1.0 (2021-12-10)
 
